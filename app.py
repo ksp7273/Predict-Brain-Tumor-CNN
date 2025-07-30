@@ -38,7 +38,7 @@ def preprocess_image(image, target_size=(IMG_HEIGHT, IMG_WIDTH)):
 # Load pre-trained CNN model
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model('brain_tumor_cnn_model.h5')
+    model = tf.keras.models.load_model('/workspaces/Predict-Brain-Tumor-CNN/brain_tumor_cnn_model.h5')
     return model
 
 model = load_model()
@@ -59,12 +59,19 @@ if uploaded_image is not None:
     processed_img = np.expand_dims(processed_img, axis=0)  # Add batch dimension
     prediction = model.predict(processed_img)[0]  # Get probability
     label = "Tumor" if prediction > 0.5 else "No Tumor"
-    color = [255, 0, 0] if prediction > 0.5 else [0, 255, 0]  # Red for tumor, green for no tumor
+    text_color = "#FF0000" if prediction > 0.5 else "#00FF00"  # Red for tumor, green for no tumor
+    #color = [255, 0, 0] if prediction > 0.5 else [0, 255, 0]  # Red for tumor, green for no tumor
     
     # Create colored background
-    colored_bg = np.zeros((100, 200, 3), dtype=np.uint8)
-    colored_bg[:] = color
-    st.image(colored_bg, caption=f"Prediction: {label}", use_column_width=True)
+    #colored_bg = np.zeros((100, 200, 3), dtype=np.uint8)
+    #colored_bg[:] = 
+    #st.image(colored_bg, caption=f"Prediction: {label}", use_column_width=True)
+    
+    # Display prediction with colored text
+    st.markdown(f"<h3 style='color:{text_color};'>Prediction: {label}</h3>", unsafe_allow_html=True)
+        
+    # Display confidence with colored text
+    st.markdown(f"<p style='color:{text_color};'>Prediction Confidence: {prediction[0]:.2f}</p>", unsafe_allow_html=True)
 
 # Instructions
 st.markdown("""
