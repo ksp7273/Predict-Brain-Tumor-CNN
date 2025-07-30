@@ -1,3 +1,6 @@
+# Medical Image Segmentation with CNN
+**Problem**: Segment tumors in MRI scans to assist radiologists in diagnosis
+
 Collecting workspace informationHere’s a step-by-step explanation of how your notebook brain_tumor_segmentation_unet.ipynb works for brain tumor classification using a CNN:
 
 ---
