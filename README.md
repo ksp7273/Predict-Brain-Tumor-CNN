@@ -153,13 +153,17 @@ Here’s a step-by-step explanation of how your app.py Streamlit code works for 
 
 ---
 
-
 **Install**:  
-          ```bash
+        
+         ```bash
           pip install streamlit tensorflow numpy opencv-python pillow
+
+
 **RUN APP**: 
-          ```bash
+        
+         ```bash
           streamlit run app.py
+
 **Summary:**  
 The app lets users upload an MRI image, processes it, shows the original and contour-highlighted images, predicts if a tumor is present, and displays the result with color-coded confidence.
 
